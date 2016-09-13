@@ -8,8 +8,11 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button x:ConnectionId='1' x:Name="button" Content="Dialogue" HorizontalAlignment="Left" Margin="127,286,0,0" VerticalAlignment="Top" Width="143"                     />
-        <Button x:ConnectionId='2' x:Name="button1" Content="Button" HorizontalAlignment="Left" Margin="127,409,0,0" VerticalAlignment="Top" Width="143"                      />
+        <Button x:ConnectionId='1' x:Name="button" Content="Dialogue" HorizontalAlignment="Left" Margin="127,73,0,0" VerticalAlignment="Top" Width="143"                     />
+        <Button x:ConnectionId='2' x:Name="button30mn" Content="30mn" HorizontalAlignment="Left" Margin="127,141,0,0" VerticalAlignment="Top" Width="143"                      />
+        <Button x:ConnectionId='3' x:Name="button60mn" Content="60mn" HorizontalAlignment="Left" Margin="127,173,0,0" VerticalAlignment="Top" Width="143"                         />
+        <Button x:ConnectionId='4' x:Name="buttonOff" Content="Off" HorizontalAlignment="Left" Margin="127,237,0,0" VerticalAlignment="Top" Width="143"                        />
+        <Button x:ConnectionId='5' x:Name="buttonOn" Content="On" HorizontalAlignment="Left" Margin="127,205,0,0" VerticalAlignment="Top" Width="143"                       />
 
     </Grid>
 </Page>
