@@ -8,11 +8,14 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="31*"/>
+            <RowDefinition Height="33*"/>
+        </Grid.RowDefinitions>
         <Button x:Name="button" Content="Dialogue" HorizontalAlignment="Left" Margin="127,73,0,0" VerticalAlignment="Top" Width="143" Click="button_Click"/>
         <Button x:Name="button30mn" Content="30mn" HorizontalAlignment="Left" Margin="127,141,0,0" VerticalAlignment="Top" Width="143" Click="button1_Click"/>
         <Button x:Name="button60mn" Content="60mn" HorizontalAlignment="Left" Margin="127,173,0,0" VerticalAlignment="Top" Width="143" Click="button60mn_Click"/>
         <Button x:Name="buttonOff" Content="Off" HorizontalAlignment="Left" Margin="127,237,0,0" VerticalAlignment="Top" Width="143" Click="buttonOff_Click"/>
-        <Button x:Name="buttonOn" Content="On" HorizontalAlignment="Left" Margin="127,205,0,0" VerticalAlignment="Top" Width="143" Click="buttonOn_Click"/>
-
+    
     </Grid>
 </Page>

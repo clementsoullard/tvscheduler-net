@@ -1,0 +1,1 @@
+C:\Users\cleme\documents\visual studio 2015\Projects\TVScheduler\TVScheduler\TVScheduler.csproj;x64

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -17,6 +18,9 @@ using Windows.UI.Xaml.Navigation;
 using System.Text;
 using System.Diagnostics;
 using Newtonsoft.Json;
+using System.Net;
+using System.Threading.Tasks;
+using System.Xml;
 
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -47,6 +51,7 @@ namespace TVScheduler
         public MainPage()
         {
             this.InitializeComponent();
+            getStatus();
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -69,19 +74,19 @@ namespace TVScheduler
             dialog.DefaultCommandIndex = 0;
             dialog.CancelCommandIndex = 1;
 
-            var result =  dialog.ShowAsync();
+            var result = dialog.ShowAsync();
 
-          
+
         }
 
-        private const string URL = "http://192.168.1.20/tvscheduler/credit";
+        private const string URL = "http://192.168.1.32/tvscheduler/credit";
 
-        private const string URLStatus = "http://192.168.1.20/tvscheduler/tvstatus";
+        private const string URLStatus = "http://192.168.1.32/tvscheduler/tvstatus";
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(URL );
+            client.BaseAddress = new Uri(URL);
 
             // Add an Accept header for JSON format.
             client.DefaultRequestHeaders.Accept.Add(
@@ -93,8 +98,8 @@ namespace TVScheduler
             {
                 // Parse the response body. Blocking!
                 var dataObjects = response.Content.ReadAsStreamAsync().Result;
-                 Debug.WriteLine("Coucou !"+ dataObjects);
-               }
+                Debug.WriteLine("Coucou !" + dataObjects);
+            }
             else
             {
                 Debug.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
@@ -105,7 +110,7 @@ namespace TVScheduler
         {
 
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(URL  );
+            client.BaseAddress = new Uri(URL);
 
             // Add an Accept header for JSON format.
             client.DefaultRequestHeaders.Accept.Add(
@@ -150,64 +155,60 @@ namespace TVScheduler
 
         }
 
-        private void buttonOn_Click(object sender, RoutedEventArgs e)
-        {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(URL );
 
-            // Add an Accept header for JSON format.
-            client.DefaultRequestHeaders.Accept.Add(
-            new MediaTypeWithQualityHeaderValue("application/json"));
-
-            // List data response.
-            HttpResponseMessage response = client.GetAsync("?value=-2").Result;  // Blocking call!
-            if (response.IsSuccessStatusCode)
-            {
-                // Parse the response body. Blocking!
-                var dataObjects = response.Content.ReadAsStreamAsync().Result;
-                Debug.WriteLine("Coucou !" + dataObjects);
-            }
-            else
-            {
-                Debug.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
-            }
-
-        }
 
 
         private void getStatus()
         {
-            Debug.WriteLine("Appel de Get Status " );
+            string webServiceAddress = URLStatus;
+        //    string methodName = "HelloWorld";
 
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(URLStatus);
+        //    string webServiceMethodUri = string.Format("{0}/{1}", webServiceAddress, methodName);
 
-            // Add an Accept header for JSON format.
-            client.DefaultRequestHeaders.Accept.Add(
-            new MediaTypeWithQualityHeaderValue("application/json"));
+            HttpWebRequest httpWebRequest = (HttpWebRequest)HttpWebRequest.Create(webServiceAddress);
+            httpWebRequest.Method = "GET";
 
-            // List data response.
-            HttpResponseMessage response = client.GetAsync("").Result;  // Blocking call!
-            if (response.IsSuccessStatusCode)
-            {
-                // Parse the response body. Blocking!
-                Stream ms= response.Content.ReadAsStreamAsync().Result;
-                StreamReader reader = new StreamReader(ms);
-                string serialization=reader.ReadToEnd();
-                TVStatus tst =JsonConvert.DeserializeObject<TVStatus>(serialization);
-                Debug.WriteLine("Juste après");
-                TVStatus tst2 = new TVStatus();
-
+            httpWebRequest.BeginGetResponse(Response_Completed, httpWebRequest);
 
             }
-            else
-            {
-                Debug.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
-            }
 
+        void Response_Completed(IAsyncResult result)
+        {
+            try
+            {
+                Debug.WriteLine("Retour de la reponse");
+                HttpWebRequest request = (HttpWebRequest)result.AsyncState;
+                Debug.WriteLine("Lecture de l'etat");
+                HttpWebResponse response = (HttpWebResponse)request.EndGetResponse(result);
+                Debug.WriteLine("Reponse digérée");
+
+                using (StreamReader streamReader = new StreamReader(response.GetResponseStream()))
+                {
+                    string xml = streamReader.ReadToEnd();
+                    Debug.WriteLine("Status "+ xml);
+                    /*         using (XmlReader reader = XmlReader.Create(new StringReader(xml)))
+                             {
+                                 reader.MoveToContent();
+                                 reader.GetAttribute(0);
+                                 reader.MoveToContent();
+                                string  message = reader.ReadInnerXml();
+                             }
+                 */
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Erreur "+e.Message + e.StackTrace);
+
+            }
+        }
         }
     }
-}
+
+
+
+
+    
 
 
 

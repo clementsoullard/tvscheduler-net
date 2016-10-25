@@ -9,6 +9,13 @@
 //------------------------------------------------------------------------------
 
 
+using Newtonsoft.Json;
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Net.Http;
+using System.Net.Http.Headers;
+
 namespace TVScheduler
 {
 #if !DISABLE_XAML_GENERATED_MAIN
@@ -53,7 +60,16 @@ namespace TVScheduler
                 if (global::System.Diagnostics.Debugger.IsAttached) global::System.Diagnostics.Debugger.Break();
             };
 #endif
-        }
+
+
+            getStatus();
+
+
+}
+
+
+    
+
     }
 }
 
