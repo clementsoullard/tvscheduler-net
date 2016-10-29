@@ -21,6 +21,7 @@ using Newtonsoft.Json;
 using System.Net;
 using System.Threading.Tasks;
 using System.Xml;
+using Windows.Data.Json;
 
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -32,26 +33,34 @@ namespace TVScheduler
     /// </summary>
     class TVStatus
     {
-        public long? dateOfCredit;
+        public long? dateOfCredit { get; set; }
 
-        public int? amountOfCreditInMinutes;
-        public int? bonPoints;
-        public int? activeStandbyState;
-        public int? playedMediaId;
-        public int? bonPointsWeek;
-        public Boolean? relayStatus;
-        public int? remainingSecond;
-        public string remainingTime;
+        public int? amountOfCreditInMinutes { get; set; }
+        public int? bonPoints { get; set; }
+        public int? activeStandbyState { get; set; }
+        public int? playedMediaId { get; set; }
+        public int? bonPointsWeek { get; set; }
+        public Boolean? relayStatus { get; set; }
+        public int? remainingSecond { get; set; }
+        public string remainingTime { get; set; }
+        public string title { get; set; }
 
 
-        }
+    }
+
+
 
     public sealed partial class MainPage : Page
     {
+
+        TVStatus chan;
+
         public MainPage()
         {
             this.InitializeComponent();
-            getStatus();
+            chan= new TVStatus();
+            chan.title = "Mon Cul is Poulet";
+            DataContext = chan;
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -184,21 +193,31 @@ namespace TVScheduler
 
                 using (StreamReader streamReader = new StreamReader(response.GetResponseStream()))
                 {
-                    string xml = streamReader.ReadToEnd();
-                    Debug.WriteLine("Status "+ xml);
-                    /*         using (XmlReader reader = XmlReader.Create(new StringReader(xml)))
-                             {
-                                 reader.MoveToContent();
-                                 reader.GetAttribute(0);
-                                 reader.MoveToContent();
-                                string  message = reader.ReadInnerXml();
-                             }
-                 */
+                    string jsonString = streamReader.ReadToEnd();
+                    Debug.WriteLine("Status " + jsonString);
+                    JsonObject root = JsonValue.Parse(jsonString).GetObject();
+                    int activeStandbyState= (int)root.GetNamedNumber("activeStandbyState");
+                    Debug.WriteLine("Active standbystate " + activeStandbyState);
+                    chan.activeStandbyState = activeStandbyState;
+                    
+                 //   chan.dateOfCredit= (long) root.GetNamedNumber("dateOfCredit");
+                    /*  for (uint i = 0; i < root.Count; i++)
+                   {
+                        int activeStandbyState = Int32.Parse(root.GetObjectAt(i).GetNamedString("activeStandbyState"));
+                        Debug.WriteLine("Active standbystate " + activeStandbyState);
+                        string description1 = root.GetObjectAt(i).GetNamedString("description");
+                        string link1 = root.GetObjectAt(i).GetNamedString("link");
+                        string cat1 = root.GetObjectAt(i).GetNamedString("cat");
+                        string image1 = root.GetObjectAt(i).GetNamedString("image");
+                        TVStatus chan = new TVStatus();
+                        chan.activeStandbyState = activeStandbyState;
+                        
+                    }*/
                 }
             }
             catch (Exception e)
             {
-                Debug.WriteLine("Erreur "+e.Message + e.StackTrace);
+                Debug.WriteLine("Erreur " + e.Message + e.StackTrace);
 
             }
         }

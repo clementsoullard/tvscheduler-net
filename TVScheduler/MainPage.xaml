@@ -16,6 +16,7 @@
         <Button x:Name="button30mn" Content="30mn" HorizontalAlignment="Left" Margin="127,141,0,0" VerticalAlignment="Top" Width="143" Click="button1_Click"/>
         <Button x:Name="button60mn" Content="60mn" HorizontalAlignment="Left" Margin="127,173,0,0" VerticalAlignment="Top" Width="143" Click="button60mn_Click"/>
         <Button x:Name="buttonOff" Content="Off" HorizontalAlignment="Left" Margin="127,237,0,0" VerticalAlignment="Top" Width="143" Click="buttonOff_Click"/>
-    
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="176,300,0,0" Grid.RowSpan="2" TextWrapping="Wrap" Text="{Binding title}" VerticalAlignment="Top"/>
+
     </Grid>
 </Page>
