@@ -47,8 +47,7 @@ namespace TVScheduler
         public Boolean relayStatus { get; set; }
         public int remainingSecond { get; set; }
         public string remainingTime { get; set; }
-        public string title;    
-    }
+     }
 
     class TVStatusUI : INotifyPropertyChanged
     {
@@ -62,17 +61,17 @@ namespace TVScheduler
         public Boolean relayStatus { get; set; }
         public int remainingSecond { get; set; }
         public string remainingTime { get; set; }
-        public string title;
-        public string Title
+        public string RemainingTime
 
         {
-            get { return title; }
+            get { return remainingTime; }
             set
             {
-                title = value; Debug.WriteLine("Woknroll !");
+                remainingTime = value; Debug.WriteLine("Set remining time UI !");
                 NotifyPropertyChanged();
             }
         }
+ 
 
 
 
@@ -87,7 +86,7 @@ namespace TVScheduler
             if (PropertyChanged != null)
             {
                 Debug.WriteLine("sending notification for status");
-                PropertyChanged(this, new PropertyChangedEventArgs("Title"));
+                PropertyChanged(this, new PropertyChangedEventArgs("RemainingTime"));
 
             }
         }
@@ -104,7 +103,7 @@ namespace TVScheduler
         {
             this.InitializeComponent();
             chan= new TVStatusUI();
-            chan.title = "Mon Cul is Poulet";
+            chan.remainingTime = "Test à la noisette";
             DataContext = chan;
             getStatus();
         }
@@ -221,7 +220,7 @@ namespace TVScheduler
              httpWebRequest.BeginGetResponse(Response_Completed, httpWebRequest);
         }
 
-          void  Response_Completed(IAsyncResult result)
+        async  void Response_Completed(IAsyncResult result)
         {
             TVStatus tvStatus = new TVStatus();
             try
@@ -238,14 +237,15 @@ namespace TVScheduler
                     Debug.WriteLine("Status " + jsonString);
                     JsonObject root = JsonValue.Parse(jsonString).GetObject();
                     int activeStandbyState= (int)root.GetNamedNumber("activeStandbyState");
-                    Debug.WriteLine("Active standbystate " + activeStandbyState);
+                    string remainingTime= root.GetNamedString("remainingTime");
+                    Debug.WriteLine("Temps restant " + remainingTime);
                     chan.activeStandbyState = activeStandbyState;
-                    
-                    Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-     () =>
-     {
-         chan.Title = "responseString";
-     });
+                    await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+        () =>
+        {
+            Debug.WriteLine("Set remaining time sur Thread Princ" );
+            chan.RemainingTime = remainingTime;
+        });
 
                 }
             }
