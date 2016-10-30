@@ -19,9 +19,13 @@ using System.Text;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using System.Net;
+
 using System.Threading.Tasks;
 using System.Xml;
 using Windows.Data.Json;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Windows.UI.Core;
 
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -31,36 +35,78 @@ namespace TVScheduler
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    class TVStatus
+    class TVStatus 
     {
-        public long? dateOfCredit { get; set; }
+        public long dateOfCredit { get; set; }
 
-        public int? amountOfCreditInMinutes { get; set; }
-        public int? bonPoints { get; set; }
-        public int? activeStandbyState { get; set; }
-        public int? playedMediaId { get; set; }
-        public int? bonPointsWeek { get; set; }
-        public Boolean? relayStatus { get; set; }
-        public int? remainingSecond { get; set; }
+        public int amountOfCreditInMinutes { get; set; }
+        public int bonPoints { get; set; }
+        public int activeStandbyState { get; set; }
+        public int playedMediaId { get; set; }
+        public int bonPointsWeek { get; set; }
+        public Boolean relayStatus { get; set; }
+        public int remainingSecond { get; set; }
         public string remainingTime { get; set; }
-        public string title { get; set; }
+        public string title;    
+    }
+
+    class TVStatusUI : INotifyPropertyChanged
+    {
+        public long dateOfCredit { get; set; }
+
+        public int amountOfCreditInMinutes { get; set; }
+        public int bonPoints { get; set; }
+        public int activeStandbyState { get; set; }
+        public int playedMediaId { get; set; }
+        public int bonPointsWeek { get; set; }
+        public Boolean relayStatus { get; set; }
+        public int remainingSecond { get; set; }
+        public string remainingTime { get; set; }
+        public string title;
+        public string Title
+
+        {
+            get { return title; }
+            set
+            {
+                title = value; Debug.WriteLine("Woknroll !");
+                NotifyPropertyChanged();
+            }
+        }
+
+
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        // This method is called by the Set accessor of each property.
+        // The CallerMemberName attribute that is applied to the optional propertyName
+        // parameter causes the property name of the caller to be substituted as an argument.
+        public void NotifyPropertyChanged()
+        {
+            if (PropertyChanged != null)
+            {
+                Debug.WriteLine("sending notification for status");
+                PropertyChanged(this, new PropertyChangedEventArgs("Title"));
+
+            }
+        }
 
 
     }
 
-
-
     public sealed partial class MainPage : Page
     {
 
-        TVStatus chan;
+        TVStatusUI chan;
 
         public MainPage()
         {
             this.InitializeComponent();
-            chan= new TVStatus();
+            chan= new TVStatusUI();
             chan.title = "Mon Cul is Poulet";
             DataContext = chan;
+            getStatus();
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -167,25 +213,20 @@ namespace TVScheduler
 
 
 
-        private void getStatus()
+         private  void getStatus()
         {
             string webServiceAddress = URLStatus;
-        //    string methodName = "HelloWorld";
-
-        //    string webServiceMethodUri = string.Format("{0}/{1}", webServiceAddress, methodName);
-
             HttpWebRequest httpWebRequest = (HttpWebRequest)HttpWebRequest.Create(webServiceAddress);
             httpWebRequest.Method = "GET";
+             httpWebRequest.BeginGetResponse(Response_Completed, httpWebRequest);
+        }
 
-            httpWebRequest.BeginGetResponse(Response_Completed, httpWebRequest);
-
-            }
-
-        void Response_Completed(IAsyncResult result)
+          void  Response_Completed(IAsyncResult result)
         {
+            TVStatus tvStatus = new TVStatus();
             try
             {
-                Debug.WriteLine("Retour de la reponse");
+               Debug.WriteLine("Retour de la reponse");
                 HttpWebRequest request = (HttpWebRequest)result.AsyncState;
                 Debug.WriteLine("Lecture de l'etat");
                 HttpWebResponse response = (HttpWebResponse)request.EndGetResponse(result);
@@ -200,19 +241,12 @@ namespace TVScheduler
                     Debug.WriteLine("Active standbystate " + activeStandbyState);
                     chan.activeStandbyState = activeStandbyState;
                     
-                 //   chan.dateOfCredit= (long) root.GetNamedNumber("dateOfCredit");
-                    /*  for (uint i = 0; i < root.Count; i++)
-                   {
-                        int activeStandbyState = Int32.Parse(root.GetObjectAt(i).GetNamedString("activeStandbyState"));
-                        Debug.WriteLine("Active standbystate " + activeStandbyState);
-                        string description1 = root.GetObjectAt(i).GetNamedString("description");
-                        string link1 = root.GetObjectAt(i).GetNamedString("link");
-                        string cat1 = root.GetObjectAt(i).GetNamedString("cat");
-                        string image1 = root.GetObjectAt(i).GetNamedString("image");
-                        TVStatus chan = new TVStatus();
-                        chan.activeStandbyState = activeStandbyState;
-                        
-                    }*/
+                    Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+     () =>
+     {
+         chan.Title = "responseString";
+     });
+
                 }
             }
             catch (Exception e)
@@ -220,8 +254,14 @@ namespace TVScheduler
                 Debug.WriteLine("Erreur " + e.Message + e.StackTrace);
 
             }
+         
         }
+
+        private void button1_Click_1(object sender, RoutedEventArgs e)
+        {
+            getStatus();
         }
+    }
     }
 
 

@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RenderTransformOrigin="0.508,0.659">
         <Grid.RowDefinitions>
             <RowDefinition Height="31*"/>
             <RowDefinition Height="33*"/>
@@ -16,7 +16,10 @@
         <Button x:ConnectionId='2' x:Name="button30mn" Content="30mn" HorizontalAlignment="Left" Margin="127,141,0,0" VerticalAlignment="Top" Width="143"                      />
         <Button x:ConnectionId='3' x:Name="button60mn" Content="60mn" HorizontalAlignment="Left" Margin="127,173,0,0" VerticalAlignment="Top" Width="143"                         />
         <Button x:ConnectionId='4' x:Name="buttonOff" Content="Off" HorizontalAlignment="Left" Margin="127,237,0,0" VerticalAlignment="Top" Width="143"                        />
-    
+        <TextBlock x:ConnectionId='5' x:Name="textBlock" HorizontalAlignment="Left" Margin="147,33,0,0" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" Grid.Row="1"/>
+        <Button x:ConnectionId='6' x:Name="button1" Content="Test" HorizontalAlignment="Left" Height="36" Margin="127,274,0,0" VerticalAlignment="Top" Width="143"                        />
+        <Button x:ConnectionId='7' x:Name="button2" Content="Button" HorizontalAlignment="Left" Height="39" Margin="363,79,0,0" VerticalAlignment="Top" Width="79"/>
+
     </Grid>
 </Page>
 

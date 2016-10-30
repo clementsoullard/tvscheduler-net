@@ -10,7 +10,7 @@
     <PackageArchitecture>x64</PackageArchitecture>
     <PackageIdentityName>cdd1f606-0305-4c4f-9464-415f4842006c</PackageIdentityName>
     <PackageIdentityPublisher>CN=cleme</PackageIdentityPublisher>
-    <IntermediateOutputPath>C:\Users\cleme\documents\visual studio 2015\Projects\TVScheduler\TVScheduler\obj\x64\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\cleme\Documents\Visual Studio 2015\Projects\TVScheduler\TVScheduler\obj\x64\Debug\</IntermediateOutputPath>
     <RemoteDeploymentType>
     </RemoteDeploymentType>
     <PackageRegistrationPath>
@@ -25,16 +25,16 @@
     <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\cleme\documents\visual studio 2015\Projects\TVScheduler\TVScheduler\bin\x64\Debug\Core\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\cleme\Documents\Visual Studio 2015\Projects\TVScheduler\TVScheduler\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-10-25T06:43:57.643</Modified>
+      <Modified>2016-10-30T06:46:09.987</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\cleme\documents\visual studio 2015\Projects\TVScheduler\TVScheduler\bin\x64\Debug\TVScheduler.exe">
+    <AppxPackagedFile Include="C:\Users\cleme\Documents\Visual Studio 2015\Projects\TVScheduler\TVScheduler\bin\x64\Debug\TVScheduler.exe">
       <PackagePath>entrypoint\TVScheduler.exe</PackagePath>
-      <Modified>2016-10-25T06:43:57.346</Modified>
+      <Modified>2016-10-30T06:46:08.865</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\cleme\.nuget\packages\Microsoft.CSharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -496,59 +496,59 @@
       <PackagePath>System.Xml.XmlSerializer.dll</PackagePath>
       <Modified>2016-06-11T21:15:04.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\cleme\documents\visual studio 2015\Projects\TVScheduler\TVScheduler\Properties\Default.rd.xml">
+    <AppxPackagedFile Include="C:\Users\cleme\Documents\Visual Studio 2015\Projects\TVScheduler\TVScheduler\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
       <Modified>2016-08-27T19:59:24.128</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\cleme\documents\visual studio 2015\Projects\TVScheduler\TVScheduler\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\cleme\Documents\Visual Studio 2015\Projects\TVScheduler\TVScheduler\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
       <Modified>2015-09-20T15:30:08.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\cleme\documents\visual studio 2015\Projects\TVScheduler\TVScheduler\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\cleme\Documents\Visual Studio 2015\Projects\TVScheduler\TVScheduler\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2015-09-20T15:30:08.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\cleme\documents\visual studio 2015\Projects\TVScheduler\TVScheduler\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\cleme\Documents\Visual Studio 2015\Projects\TVScheduler\TVScheduler\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2015-09-20T15:30:08.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\cleme\documents\visual studio 2015\Projects\TVScheduler\TVScheduler\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\cleme\Documents\Visual Studio 2015\Projects\TVScheduler\TVScheduler\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2015-09-20T15:30:08.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\cleme\documents\visual studio 2015\Projects\TVScheduler\TVScheduler\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="C:\Users\cleme\Documents\Visual Studio 2015\Projects\TVScheduler\TVScheduler\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2015-09-20T15:30:08.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\cleme\documents\visual studio 2015\Projects\TVScheduler\TVScheduler\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="C:\Users\cleme\Documents\Visual Studio 2015\Projects\TVScheduler\TVScheduler\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2015-09-20T15:30:08.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\cleme\documents\visual studio 2015\Projects\TVScheduler\TVScheduler\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\cleme\Documents\Visual Studio 2015\Projects\TVScheduler\TVScheduler\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2015-09-20T15:30:08.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\cleme\documents\visual studio 2015\Projects\TVScheduler\TVScheduler\bin\x64\Debug\TVScheduler.xr.xml">
+    <AppxPackagedFile Include="C:\Users\cleme\Documents\Visual Studio 2015\Projects\TVScheduler\TVScheduler\bin\x64\Debug\TVScheduler.xr.xml">
       <PackagePath>TVScheduler.xr.xml</PackagePath>
-      <Modified>2016-10-18T20:47:38.241</Modified>
+      <Modified>2016-10-29T20:46:01.553</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
       <Modified>2016-08-15T16:11:09.697</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\cleme\documents\visual studio 2015\Projects\TVScheduler\TVScheduler\bin\x64\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\Users\cleme\Documents\Visual Studio 2015\Projects\TVScheduler\TVScheduler\bin\x64\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2016-10-25T06:42:36.410</Modified>
+      <Modified>2016-10-29T20:46:02.122</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\cleme\documents\visual studio 2015\Projects\TVScheduler\TVScheduler\bin\x64\Debug\Core\TVScheduler.exe">
+    <AppxPackagedFile Include="C:\Users\cleme\Documents\Visual Studio 2015\Projects\TVScheduler\TVScheduler\bin\x64\Debug\Core\TVScheduler.exe">
       <PackagePath>TVScheduler.exe</PackagePath>
-      <Modified>2016-10-25T06:43:57.635</Modified>
+      <Modified>2016-10-30T06:46:09.980</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
